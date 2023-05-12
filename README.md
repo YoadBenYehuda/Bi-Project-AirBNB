@@ -17,3 +17,6 @@ git push origin ענף העלאה הסופית לסביבה של גיט
 
 עכדכון חזרה במחשב Git pull
 Git checkout **branch**
+
+
+סכמה
