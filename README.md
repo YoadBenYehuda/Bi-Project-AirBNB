@@ -15,7 +15,7 @@ git branch בדיקה באיזה ענף אתה
 
 git push origin ענף העלאה הסופית לסביבה של גיט
 
-עכדכון חזרה במחשב Git pull
+עדכון חזרה במחשב Git pull
 Git checkout **branch**
 
 
