@@ -1,0 +1,50 @@
+SELECT neighbourhood, AVG(price) OVER (PARTITION BY neighbourhood) AS "price_avg" 
+FROM airbnb, fact
+WHERE airbnb.id = fact.id
+GROUP by neighbourhood
+order by 2 DESC;
+/********/
+SELECT accommodates, bedrooms, bathrooms,  AVG(price) OVER (PARTITION BY bathrooms,bedrooms, accommodates) AS "price_avg" 
+FROM airbnb, fact
+WHERE airbnb.id = fact.id
+GROUP by bathrooms, bedrooms, accommodates
+order by 3, 2, 1 DESC;
+/*********/
+SELECT neighbourhood, property_type, count(*) as "num of properties" , AVG(price) OVER (PARTITION BY neighbourhood, property_type) as "price_avg"
+FROM airbnb, fact
+WHERE airbnb.id = fact.id 
+GROUP by 1,2
+order by 1, 2,3 desc;
+/*********/
+select AVG(accommodates), neighbourhood,  AVG(price) OVER (PARTITION BY accommodates, neighbourhood) AS "price_avg" 
+FROM airbnb, fact
+WHERE airbnb.id = fact.id 
+GROUP by 2
+order by 1,2 DESC;
+/*********/
+SELECT cancellation_policy,  AVG(price) OVER (PARTITION BY cancellation_policy) AS "price_avg" 
+FROM airbnb , fact
+WHERE airbnb.id = fact.id 
+GROUP by 1
+order by 1 DESC;
+/*********/
+SELECT  neighbourhood, property_type,  (AVG(price) OVER (PARTITION BY accommodates, property_type)) / avg(accommodates)  AS "price_avg per person" 
+FROM airbnb, fact
+WHERE airbnb.id = fact.id 
+GROUP by 1,2
+order by 1 DESC;
+/*********/
+SELECT neighbourhood, property_type, MAX(price) OVER (PARTITION BY neighbourhood, property_type) AS 'MAX_PRICE',
+MIN(price) OVER (PARTITION BY neighbourhood, property_type) AS 'MIN_PRICE'
+FROM airbnb, fact
+WHERE airbnb.id = fact.id 
+GROUP BY 1,2
+ORDER BY 1,2;
+/*********/
+
+SELECT neighbourhood, room_type,  AVG(price) OVER (PARTITION BY neighbourhood, room_type) AS "price_avg" 
+FROM airbnb, fact
+WHERE airbnb.id = fact.id 
+GROUP by 1,2
+order by 1,2 DESC;
+/*********/
